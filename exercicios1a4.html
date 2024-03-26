@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Exercício 1 a 4 JavaScript</title>
+		<meta charset="UTF-8">
+		<meta name="description" content="Free Web tutorials">
+		<meta name="keywords" content="HTML, CSS, JavaScript">
+		<meta name="author" content="Larissa Nunes e Isabelly Bernardi">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+			body{
+				margin-left: 150px;
+				margin-top: 20px;
+				margin-right: 150px;
+				margin-bottom: 50px;
+			}
+			.button {
+				background-color: white; 
+				color: black; 
+				border: 2px solid #f44336;
+				padding: 16px 32px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				margin: 4px 2px;
+				transition-duration: 0.4s;
+				cursor: pointer;
+			}
+
+			.button:hover {
+				background-color: #f44336;
+				color: white;
+			}
+			.destaca {
+				color: #222;
+				font-weight: bold;
+			}
+		</style>
+	</head>
+	<body>
+		<h1 style="text-align: center;">Atividade de DDM</h1>
+		<h2  style="text-align: center;">Exercício 2</h2>
+		<p>Clique no botão para exibir a caixa de confirmação.</p>
+		<button class="button" onclick="funcao1()">Clique aqui</button>
+		<p id="demo"></p>
+		
+		
+		<h2 style="text-align: center;">Exercício 3</h2>
+		<h3>1. document.getElementById()</h3>
+		<p id="para1">Exemplo usando document.getElementById()</p>
+		<button onclick="mudarCor('#BA55D3');" class="button">ROXO</button>
+		<button onclick="mudarCor('#00008B');" class="button">AZUL</button>
+		<br><br><br><br><br><br><br><br>
+		
+		<h3>2. document.getElementsByTagName()</h3>
+		<h4>Primeiro cabeçalho</h4>
+		<p>Esse é o primeiro parágrafo</p>
+		<h4>Segundo cabeçalho</h4>
+		<p>Esse é o segundo parágrafo</p>
+		<button id="btnCount" class="button">Contar H4</button>
+		<br><br><br><br><br><br><br><br>
+		
+		<h3>3. document.getElementsByClassName()</h3>
+		<p class="destacado">Esta frase será destacada.</p>
+		<p>Esta frase não será destacado.</p>
+		<button onclick="destacarFrases()" class="button">Destacar Frase</button>
+		<br><br><br><br><br><br><br><br>
+		
+		<h3>4. document.querySelector()</h3>
+		<h3 id="titulo">Exemplo com document.querySelector()</h3>
+		<button id="botao" class="button">Clique aqui</button>
+		<br><br><br><br><br><br><br><br>
+		
+		<h3>5. document.querySelectorAll()</h3>
+		<p class="paragrafo">Elefante</p>
+		<p class="paragrafo">Cavalo</p>
+		<p class="paragrafo">Girafa</p>
+		<button onclick="destacarParagrafos()" class="button">Destacar palavras</button>
+		
+		
+		<h2 style="text-align: center;">Exercício 4</h2>
+	        <h3>Onmouseover</h3>
+	        <div id="meuDivo" style="width: 100px; height: 100px; background-color: red;"></div> <br>
+	
+	        <h3>Onfocus</h3>
+	        <input type="text" id="meuInput" placeholder="Digite aqui">
+	        <p id="mensagem"></p> <br>
+	
+	        <h3>Onchange</h3>
+	        <label for="nome">Digite seu nome:</label>
+	        <input type="text" id="nome" onchange="mostrarMensagem()">
+	
+		<script>
+			// exercicio 1
+			alert("Exercício 1!!!");
+			
+			// exercicio 2
+			function funcao1()
+			{
+			var x;
+			var r=confirm("Escolha um valor!");
+			if (r==true)
+			  {
+			  x="Você pressionou OK!";
+			  }
+			else
+			  {
+			  x="Você pressionou Cancelar!";
+			  }
+			document.getElementById("demo").innerHTML=x;
+			}			
+			
+			
+			// exercicio 3
+			// document.getElementById
+			function mudarCor(novaCor) {
+				var elemento = document.getElementById("para1"); //
+				elemento.style.color = novaCor;
+			}
+			// document.getElementsByTagName
+			let btn = document.getElementById('btnCount');
+			btn.addEventListener('click', () => {
+				let headings = document.getElementsByTagName('h4');
+				alert(`O número de tags h4 é: ${headings.length}`);
+			});
+			// document.getElementsByClassName
+			function destacarFrases() {
+				var elementos = document.getElementsByClassName("destacado");
+
+				// Itera sobre os elementos e altera seu estilo
+				for (var i = 0; i < elementos.length; i++) {
+					elementos[i].style.backgroundColor = "#40E0D0";
+				}
+			}
+			//document.querySelector()
+			document.querySelector('#titulo').textContent = 'Exemplo 4';
+			document.querySelector('#botao').addEventListener('click', function() {
+			alert('Botão clicado!');
+			});
+			//document.querySelectorAll
+			function destacarParagrafos() {
+				var paragrafos = document.querySelectorAll(".paragrafo");
+
+				// Altera o estilo de todos os parágrafos selecionados
+				paragrafos.forEach(function(paragrafo) {
+					paragrafo.classList.add("destaca");
+				});
+			}
+				
+			
+			// exercicio 4
+			//--------------- ONMOUSEOVER ---------------
+		        // Selecionar a div
+		        var meuDiv = document.getElementById('meuDivo');
+		
+		        // Adicionar um event listener para o evento de mouse sobre
+		        meuDiv.addEventListener('mouseover', function() {
+		        	this.style.backgroundColor = 'red';
+		        });
+		
+		        // Adicionar um event listener para o evento de mouse fora
+		         meuDiv.addEventListener('mouseout', function() {
+		                this.style.backgroundColor = 'yellow';
+		        });
+		            
+		        //--------------- ONCHANGE ---------------
+		        function mostrarMensagem() {
+		                var nome = document.getElementById("nome").value;
+		                document.getElementById("mensagem").innerText =  "Olá, " + nome + "! Seu nome foi alterado.";
+		        }
+		
+		        //--------------- ONFOCUS ---------------
+		        // Selecionar o input
+		        var meuInput = document.getElementById('meuInput');
+		        var mensagem = document.getElementById('mensagem');
+		
+		        // Adicionar um event listener para o evento onfocus
+		        meuInput.addEventListener('focus', function() {
+		        	mensagem.textContent = 'O campo está em foco.';
+		        });
+		
+		        // Adicionar um event listener para o evento onblur (perda de foco)
+		        meuInput.addEventListener('blur', function() {
+		                mensagem.textContent = ''; // Limpar a mensagem quando o campo perde o foco
+		        });
+			
+		</script>
+
+	</body>
+</html>
